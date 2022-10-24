@@ -1,17 +1,15 @@
 <template>
-  <h1>Events For Good</h1>
-
+  <div class="search-box">
+    <BaseInput
+      v-model="keyword"
+      type="text"
+      label="Search..."
+      @input="updateKeyword"
+    />
+  </div>
   <div class="events">
-    <div class="search-box">
-      <BaseInput
-        v-model="keyword"
-        type="text"
-        label="Search..."
-        @input="updateKeyword"
-      />
-    </div>
-
     <EventCard
+      class="event"
       v-for="event in events"
       :key="event.id"
       :event="event"
@@ -134,16 +132,27 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: inline-block;
 }
 .pagination {
   display: flex;
-  width: 290px;
+  width: 830px;
+  font-size: 25px;
+  border: 1px #39495c;
+  /* margin-bottom: 18px; */
+  /* background-color: rgb(245, 252, 251); */
+  border-radius: 25px;
 }
 
 .pagination a {
   flex: 1;
+  /* display: flex; */
   text-decoration: none;
-  color: #2c3e50;
+  color: #000000;
+  /* border: 1px #39495c;
+  margin-bottom: 18px;
+  background-color: rgb(245, 252, 251); */
+  /* border-radius: 25px; */
 }
 
 #page-prev {
@@ -156,5 +165,11 @@ export default {
 
 .search-box {
   width: 300px;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 680px;
+}
+.event {
+  display: inline-block;
 }
 </style>

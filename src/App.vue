@@ -1,44 +1,46 @@
 <template>
-  <div id="flashMessage" v-if="GStore.flashMessage">
-    {{ GStore.flashMessage }}
-  </div>
-  <div id="nav">
-    <nav class="navbar navbar-expand">
-      <ul v-if="!GStore.currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <router-link to="/register" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Login
-          </router-link>
-        </li>
-      </ul>
-      <ul v-if="GStore.currentUser" class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <router-link to="/profile" class="nav-link">
-            <font-awesome-icon icon="user" />
-            {{ GStore.currentUser.name }}
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" @click="logout">
-            <font-awesome-icon icon="sign-out-alt" /> Logout
-          </a>
-        </li>
-      </ul>
+  <div class="background">
+    <div id="flashMessage" v-if="GStore.flashMessage">
+      {{ GStore.flashMessage }}
+    </div>
+    <div id="nav">
+      <nav class="navbar navbar-expand">
+        <ul v-if="!GStore.currentUser" class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <router-link to="/register" class="nav-link">
+              <font-awesome-icon icon="user-plus" /> Sign Up
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/login" class="nav-link">
+              <font-awesome-icon icon="sign-in-alt" /> Login
+            </router-link>
+          </li>
+        </ul>
+        <ul v-if="GStore.currentUser" class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <router-link to="/profile" class="nav-link">
+              <font-awesome-icon icon="user" />
+              {{ GStore.currentUser.name }}
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="logout">
+              <font-awesome-icon icon="sign-out-alt" /> Logout
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <nav>
+      <router-link :to="{ name: 'EventList' }">Home</router-link> |
+      <router-link :to="{ name: 'about' }">About</router-link> |
+      <span v-if="isAdmin">
+        <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
+      </span>
     </nav>
+    <router-view />
   </div>
-  <nav>
-    <router-link :to="{ name: 'EventList' }">Home</router-link> |
-    <router-link :to="{ name: 'about' }">About</router-link> |
-    <span v-if="isAdmin">
-      <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
-    </span>
-  </nav>
-  <router-view />
 </template>
 <script>
 import AuthService from "@/services/AuthService.js";
@@ -62,6 +64,15 @@ export default {
 </script>
 
 <style>
+body {
+  max-height: 100%;
+}
+.background {
+  background-image: url("/assets/background.jpg");
+  background-repeat: no-repeat;
+  height: 1000px;
+  background-size: cover;
+}
 @keyframes yellowfade {
   from {
     background: yellow;
@@ -325,5 +336,9 @@ select::ms-expand {
 }
 .button.-icon-center {
   padding: 0 20px;
+}
+.nav {
+  /* background-image: url("src/assets/background.jpg");
+  background-size: cover; */
 }
 </style>
