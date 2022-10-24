@@ -14,17 +14,17 @@ export default {
   props: {
     label: {
       type: String,
-      default: ''
+      default: "",
     },
     modelValue: {
       type: [String, Number],
-      default: ''
-    }
+      default: "",
+    },
   },
   methods: {
     inputHandler(event) {
-      this.$emit('update:modelValue', event.target.value)
-    }
-  }
-}
+      this.$emit("update:modelValue", event.target.value);
+    },
+  },
+};
 </script>

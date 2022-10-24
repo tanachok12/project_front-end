@@ -39,56 +39,56 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js'
-import UploadImages from 'vue-upload-drop-images'
+import EventService from "@/services/EventService.js";
+import UploadImages from "vue-upload-drop-images";
 export default {
-  inject: ['GStore'],
+  inject: ["GStore"],
   components: {
-    UploadImages
+    UploadImages,
   },
   data() {
     return {
       event: {
-        category: '',
-        title: '',
-        description: '',
-        location: '',
-        organizer: { id: '', name: '' },
-        imageUrls: []
+        category: "",
+        title: "",
+        description: "",
+        location: "",
+        organizer: { id: "", name: "" },
+        imageUrls: [],
       },
-      files: []
-    }
+      files: [],
+    };
   },
   methods: {
     saveEvent() {
       Promise.all(
         this.files.map((file) => {
-          return EventService.uploadFile(file)
+          return EventService.uploadFile(file);
         })
       ).then((response) => {
-        this.event.imageUrls = response.map((r) => r.data)
+        this.event.imageUrls = response.map((r) => r.data);
         EventService.saveEvent(this.event)
           .then((response) => {
-            console.log(response)
+            console.log(response);
             this.$router.push({
-              name: 'EventDetails',
-              params: { id: response.data.id }
-            })
+              name: "EventDetails",
+              params: { id: response.data.id },
+            });
             this.GStore.flashMessage =
-              'You are successfully add a new event for ' + response.data.title
+              "You are successfully add a new event for " + response.data.title;
             setTimeout(() => {
-              this.GStore.flashMessage = ''
-            }, 3000)
+              this.GStore.flashMessage = "";
+            }, 3000);
           })
           .catch(() => {
-            this.$router.push('NetworkError')
-          })
-      })
+            this.$router.push("NetworkError");
+          });
+      });
     },
     handleImages(files) {
-      this.files = files
-    }
-  }
-}
+      this.files = files;
+    },
+  },
+};
 </script>
 <style scoped></style>

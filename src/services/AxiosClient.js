@@ -8,8 +8,4 @@ const apiClient = axios.create({
     "Content-Type": "application/json",
   },
 });
-export default {
-  getOrganizers() {
-    return apiClient.get("/organizers");
-  },
-};
+export default apiClient;

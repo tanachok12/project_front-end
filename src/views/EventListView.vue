@@ -41,93 +41,93 @@
 
 <script>
 // @ is an alias to /src
-import EventCard from '@/components/EventCard.vue'
-import EventService from '@/services/EventService.js'
+import EventCard from "@/components/EventCard.vue";
+import EventService from "@/services/EventService.js";
 
 export default {
-  name: 'EventListView',
+  name: "EventListView",
   props: {
     page: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   components: {
-    EventCard
+    EventCard,
   },
   data() {
     return {
       events: null,
       totalEvents: 0,
-      keyword: null
-    }
+      keyword: null,
+    };
   },
   // eslint-disable-next-line no-unused-vars
   beforeRouteEnter(routeTo, routeFrom, next) {
     EventService.getEvents(3, parseInt(routeTo.query.page) || 1)
       .then((response) => {
         next((comp) => {
-          comp.events = response.data
-          comp.totalEvents = response.headers['x-total-count']
-        })
+          comp.events = response.data;
+          comp.totalEvents = response.headers["x-total-count"];
+        });
       })
       .catch(() => {
-        next({ name: 'NetworkError' })
-      })
+        next({ name: "NetworkError" });
+      });
   },
   beforeRouteUpdate(routeTo) {
-    var queryFunction
-    if (this.keyword == null || this.keyword === '') {
+    var queryFunction;
+    if (this.keyword == null || this.keyword === "") {
       queryFunction = EventService.getEvents(
         3,
         parseInt(routeTo.query.page) || 1
-      )
+      );
     } else {
       queryFunction = EventService.getEventByKeyword(
         this.keyword,
         3,
         parseInt(routeTo.query.page) || 1
-      )
+      );
     }
 
     queryFunction
       .then((response) => {
-        this.events = response.data // <---
-        this.totalEvents = response.headers['x-total-count'] // <---
+        this.events = response.data; // <---
+        this.totalEvents = response.headers["x-total-count"]; // <---
       })
       .catch(() => {
-        return { name: 'NetworkError' } // <---
-      })
+        return { name: "NetworkError" }; // <---
+      });
   },
   methods: {
     updateKeyword() {
-      var queryFunction
-      if (this.keyword === '') {
-        queryFunction = EventService.getEvents(3, 1)
+      var queryFunction;
+      if (this.keyword === "") {
+        queryFunction = EventService.getEvents(3, 1);
       } else {
-        queryFunction = EventService.getEventByKeyword(this.keyword, 3, 1)
+        queryFunction = EventService.getEventByKeyword(this.keyword, 3, 1);
       }
 
       queryFunction
         .then((response) => {
-          this.events = response.data
-          console.log(this.events)
-          this.totalEvents = response.headers['x-total-count']
-          console.log(this.totalEvents)
+          this.events = response.data;
+          console.log(this.events);
+          this.totalEvents = response.headers["x-total-count"];
+          console.log(this.totalEvents);
         })
         .catch(() => {
-          return { name: 'NetworkError' }
-        })
-    }
+          return { name: "NetworkError" };
+        });
+    },
   },
 
   computed: {
     hasNextPage() {
-      let totalPages = Math.ceil(this.totalEvents / 3)
-      return this.page < totalPages
-    }
-  }
-}
+      let totalPages = Math.ceil(this.totalEvents / 3);
+      return this.page < totalPages;
+    },
+  },
+};
 </script>
 <style scoped>
 .events {

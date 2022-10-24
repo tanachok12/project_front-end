@@ -2,17 +2,63 @@
   <div id="flashMessage" v-if="GStore.flashMessage">
     {{ GStore.flashMessage }}
   </div>
+  <div id="nav">
+    <nav class="navbar navbar-expand">
+      <ul v-if="!GStore.currentUser" class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <router-link to="/register" class="nav-link">
+            <font-awesome-icon icon="user-plus" /> Sign Up
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/login" class="nav-link">
+            <font-awesome-icon icon="sign-in-alt" /> Login
+          </router-link>
+        </li>
+      </ul>
+      <ul v-if="GStore.currentUser" class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <router-link to="/profile" class="nav-link">
+            <font-awesome-icon icon="user" />
+            {{ GStore.currentUser.name }}
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" @click="logout">
+            <font-awesome-icon icon="sign-out-alt" /> Logout
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
   <nav>
     <router-link :to="{ name: 'EventList' }">Home</router-link> |
     <router-link :to="{ name: 'about' }">About</router-link> |
-    <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
+    <span v-if="isAdmin">
+      <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
+    </span>
   </nav>
   <router-view />
 </template>
 <script>
+import AuthService from "@/services/AuthService.js";
 export default {
-  inject: ['GStore']
-}
+  inject: ["GStore"],
+  computed: {
+    currentUser() {
+      return localStorage.getItem("user");
+    },
+    isAdmin() {
+      return AuthService.hasRoles("ROLE_ADMIN");
+    },
+  },
+  methods: {
+    logout() {
+      AuthService.logout();
+      this.$router.go();
+    },
+  },
+};
 </script>
 
 <style>
@@ -85,7 +131,7 @@ optgroup,
 select,
 textarea {
   display: inline-flex;
-  font-family: 'Open sans', sans-serif;
+  font-family: "Open sans", sans-serif;
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
@@ -99,22 +145,22 @@ select {
   text-transform: none;
 }
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: none;
 }
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
 button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
   outline: 2px solid #39b982;
 }
 label {
@@ -138,38 +184,38 @@ textarea {
   overflow: auto;
   font-size: 20px;
 }
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
   box-sizing: border-box;
   padding: 0;
   margin-right: 0.5rem;
 }
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield;
   outline-offset: -2px;
 }
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 input,
-[type='text'],
-[type='number'],
-[type='search'],
-[type='password'] {
+[type="text"],
+[type="number"],
+[type="search"],
+[type="password"] {
   height: 52px;
   width: 100%;
   padding: 0 10px;
   font-size: 20px;
 }
 input,
-[type='text']:focus,
-[type='number']:focus,
-[type='search']:focus,
-[type='password']:focus {
+[type="text"]:focus,
+[type="number"]:focus,
+[type="search"]:focus,
+[type="password"]:focus {
   border-color: #39b982;
 }
 ::-webkit-file-upload-button {
