@@ -11,6 +11,7 @@
               <font-awesome-icon icon="user-plus" /> Sign Up
             </router-link>
           </li>
+          <img src="/assets/doctor.jpeg" alt="" />
           <li class="nav-item">
             <router-link to="/login" class="nav-link">
               <font-awesome-icon icon="sign-in-alt" /> Login
