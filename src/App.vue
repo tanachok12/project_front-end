@@ -3,6 +3,7 @@
     <div id="flashMessage" v-if="GStore.flashMessage">
       {{ GStore.flashMessage }}
     </div>
+
     <div id="nav">
       <nav class="navbar navbar-expand">
         <ul v-if="!GStore.currentUser" class="navbar-nav ml-auto">
@@ -11,13 +12,14 @@
               <font-awesome-icon icon="user-plus" /> Sign Up
             </router-link>
           </li>
-          <img src="/assets/doctor.jpeg" alt="" />
+
           <li class="nav-item">
             <router-link to="/login" class="nav-link">
               <font-awesome-icon icon="sign-in-alt" /> Login
             </router-link>
           </li>
         </ul>
+
         <ul v-if="GStore.currentUser" class="navbar-nav ml-auto">
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
@@ -31,16 +33,24 @@
             </a>
           </li>
         </ul>
+        <nav class="logo">
+          <img
+            class="imgg"
+            src="https://cdn.discordapp.com/attachments/861928412348022785/1035174410350501888/unknown.png"
+            alt=""
+          />
+          <router-link to="/">Home</router-link>
+          <!-- <router-link to="/about">About</router-link>| -->
+          <!-- <router-link to="/aboutt">Vaccine injection</router-link> |
+    <router-link to="/">Doctor Recommendation</router-link> | -->
+        </nav>
       </nav>
     </div>
 
-    <nav>
-      <router-link :to="{ name: 'EventList' }">Home</router-link> |
-      <router-link :to="{ name: 'about' }">About</router-link> |
-      <span v-if="isAdmin">
+    <!-- <router-link :to="{ name: 'about' }">About</router-link> | -->
+    <!-- <span v-if="isAdmin">
         <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
-      </span>
-    </nav>
+      </span> -->
     <router-view />
   </div>
 </template>
@@ -66,6 +76,18 @@ export default {
 </script>
 
 <style>
+.imgg {
+  width: 20px;
+}
+.home {
+  border: 1px solid #39495c;
+  padding: 2px;
+  margin: 3px;
+  background: rgb(252, 249, 249);
+  width: 60px;
+  border-radius: 6px;
+  margin-top: 20px;
+}
 body {
   max-height: 100%;
 }
@@ -83,7 +105,12 @@ body {
     background: transparent;
   }
 }
-
+.tem {
+  border: 1px solid #39495c;
+  padding: 2px;
+  margin: 3px;
+  background: rgb(252, 249, 249);
+}
 #flashMessage {
   animation-name: yellowfade;
   animation-duration: 3s;
@@ -95,18 +122,30 @@ body {
   text-align: center;
   color: #2c3e50;
 }
-
+.nav-item {
+  border: 1px solid #39495c;
+  padding: 2px;
+  margin: 3px;
+  background: rgb(252, 249, 249);
+}
 nav {
   padding: 30px;
+  text-align: left;
 }
-
+.logo {
+  border: 1px solid #39495c;
+  padding: 10px;
+  margin: 3px;
+  background: rgb(252, 249, 249);
+  height: 47px;
+}
 nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #070808;
 }
 h4 {
   font-size: 20px;

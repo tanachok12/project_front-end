@@ -4,7 +4,7 @@ import EventEditView from "@/views/event/EventEditView.vue";
 import EventRegisterView from "@/views/event/EventRegisterView.vue";
 import AboutView from "../views/AboutView.vue";
 import EventLayoutView from "@/views/event/EventLayoutView.vue";
-import EventDetailView from "@/views/event/EventDetailView.vue";
+// import EventDetailView from "@/views/event/EventDetailView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import NetWorkErrorView from "@/views/NetworkErrorView.vue";
 import AddEvent from "@/views/EventForm.vue";
@@ -14,6 +14,9 @@ import EventService from "@/services/EventService";
 import OrganizerService from "@/services/OrganizerService.js";
 import Login from "@/views/LoginFormView.vue";
 import Register from "@/views/RegisterFormView.vue";
+import EventDetailViewPatient from "@/views/event/EventDetailViewPatient.vue";
+import DoctorComment from "@/views/event/DoctorComment.vue";
+import Vaccine from "@/views/event/VaccineEditView.vue";
 const routes = [
   {
     path: "/",
@@ -49,9 +52,9 @@ const routes = [
     props: true,
     children: [
       {
-        path: "",
-        name: "EventDetails",
-        component: EventDetailView,
+        path: "Patient",
+        name: "EventDetailsPatient",
+        component: EventDetailViewPatient,
         props: true,
       },
       {
@@ -65,6 +68,24 @@ const routes = [
         name: "EventEdit",
         props: true,
         component: EventEditView,
+      },
+      {
+        path: "",
+        name: "EventDetailsPatient",
+        props: true,
+        component: EventDetailViewPatient,
+      },
+      {
+        path: "DoctorComment",
+        name: "DoctorComment",
+        props: true,
+        component: DoctorComment,
+      },
+      {
+        path: "Vaccine",
+        name: "VaccineEdit",
+        props: true,
+        component: Vaccine,
       },
     ],
   },

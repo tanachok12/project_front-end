@@ -5,13 +5,16 @@
   >
     <div class="event-card">
       <!-- <span>@{{ event.time }} on {{ event.date }}</span> -->
-      <h4>{{ event.name }}</h4>
+      <h4 class="p-name">{{ event.name }}</h4>
+      <!-- <h4 class="p-name2">Patient ID:{{ event.id }}</h4> -->
+      <!-- <img class="add-imgg" :src="event.addimg" alt="" /> -->
+      <img
+        class="add-imgg"
+        src="https://cdn.discordapp.com/attachments/859092780805914644/1035211810783100998/unknown.png"
+        alt=""
+      />
       <!-- <span>by</span>
       <h5>{{ event.organizer.name }}</h5> -->
-      <img
-        class="img"
-        src="https://cdn.discordapp.com/attachments/923851454681337896/1035120894856658994/doctor.jpeg"
-      />
     </div>
   </router-link>
 </template>
@@ -27,6 +30,19 @@ export default {
 };
 </script>
 <style scoped>
+.p-name2 {
+  font-size: 50px;
+}
+.p-name {
+  margin-top: 30px;
+  font-size: 40px;
+  font-family: Comic Sans MS;
+}
+.add-imgg {
+  width: 250px;
+  border-radius: 50px;
+  margin: 20px;
+}
 .event-card {
   padding: 20px;
   width: 450px;
@@ -40,8 +56,8 @@ export default {
 }
 
 .event-card:hover {
-  transform: scale(1.01);
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.2);
+  box-shadow: 0 3px 120px 0 rgba(0, 0, 0, 0.2);
 }
 
 .event-link {
@@ -49,7 +65,9 @@ export default {
   text-decoration: none;
 }
 .img {
-  width: 200px;
+  width: 250px;
   padding: 30px;
+  border-radius: 50%;
+  margin-top: 30px;
 }
 </style>
