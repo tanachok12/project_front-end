@@ -1,7 +1,9 @@
 <template>
   <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
   <p>{{ event.description }}</p>
-  <img v-for="url in event.imageUrls" :key="url" :src="url" />
+  <div class="img">
+    <img v-for="url in event.imageUrls" :key="url" :src="url" />
+  </div>
 </template>
 
 <script>
@@ -10,12 +12,13 @@ export default {
 };
 </script>
 <style scoped>
-img {
+.img {
   border: 1px solid #ddd; /* Gray border */
   border-radius: 4px; /* Rounded border */
   padding: 5px; /* Some padding */
   margin: 5px; /* Some margin */
-  width: 150px; /* Set a small width */
+  width: 50px; /* Set a small width */
+  margin-left: 130px;
 }
 /* Add a hover effect (blue shadow) */
 img:hover {

@@ -135,8 +135,9 @@ export default {
   display: inline-block;
 }
 .pagination {
+  margin-left: 600px;
   display: flex;
-  width: 830px;
+  width: 250px;
   font-size: 25px;
   border: 1px #39495c;
   /* margin-bottom: 18px; */
@@ -156,11 +157,21 @@ export default {
 }
 
 #page-prev {
-  text-align: left;
+  width: 10px;
+  border: 1px solid #39495c;
+  background-color: rgb(28, 33, 32);
+  border-radius: 5px;
+  height: 40px;
+  color: aliceblue;
 }
 
 #page-next {
-  text-align: right;
+  width: 10px;
+  border: 1px solid #39495c;
+  background-color: rgb(28, 33, 32);
+  border-radius: 5px;
+  height: 40px;
+  color: aliceblue;
 }
 
 .search-box {
