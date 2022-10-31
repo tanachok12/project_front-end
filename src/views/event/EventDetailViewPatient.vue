@@ -18,7 +18,11 @@
             class="event-link"
             :to="{ name: 'ChangeRoleToDoctor', params: { id: GStore.user.id } }"
           > -->
-    <button class="btn hvr-underline-from-center" @click="change">
+    <button
+      v-if="isAdmin"
+      class="btn hvr-underline-from-center"
+      @click="change"
+    >
       Set to doctor
     </button>
     <!-- </router-link>
@@ -26,7 +30,11 @@
             class="event-link"
             :to="{ name: 'ChangeRoleToPeople', params: { id: GStore.user.id } }"
           > -->
-    <button class="btn hvr-underline-from-center" @click="change">
+    <button
+      v-if="isAdmin"
+      class="btn hvr-underline-from-center"
+      @click="change"
+    >
       Set to people
     </button>
     <!-- </router-link> -->
@@ -34,8 +42,17 @@
 </template>
 
 <script>
+import AuthService from "@/services/AuthService.js";
 export default {
   props: ["id", "event"],
+  computed: {
+    isAdmin() {
+      return AuthService.hasRoles("ROLE_ADMIN");
+    },
+    isDoctor() {
+      return AuthService.hasRoles("ROLE_DOCTOR");
+    },
+  },
 };
 </script>
 <style>
