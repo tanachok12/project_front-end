@@ -1,6 +1,6 @@
 version: "3.9"
 services:
     web:
-        image: "tanachok/se331-lab13-frontend:latest"
+        image: "tanachok/se331-frontend:latest"
         ports:
             - 8001:80
