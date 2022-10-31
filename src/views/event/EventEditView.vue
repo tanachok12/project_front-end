@@ -1,49 +1,45 @@
 <template>
-  <div id="vaccine-box">
-    <p v-if="event.vaccine[0] != null" class="vaccine1">
-      Vaccine: {{ event.vaccine[0] }} <br />
-      Date: {{ event.date[0] }} <br />
-      Time: {{ event.time[0] }} <br />
-    </p>
-    <p v-if="event.vaccine[1] != null" class="vaccine2">
-      Vaccine: {{ event.vaccine[1] }} <br />
-      Date: {{ event.date[1] }} <br />
-      Time: {{ event.time[1] }} <br />
-    </p>
-    <p v-if="event.vaccine[2] != null" class="vaccine3">
-      Vaccine: {{ event.vaccine[2] }} <br />
-      Date: {{ event.date[2] }} <br />
-      Time: {{ event.time[2] }} <br />
-    </p>
+  <!-- <div class="row">
+    <div v-if="isDoctor" class="col-6">
+      <CommentForm @comment-submited="addComment" />
+    </div> -->
+  <div class="col-12">
+    <!-- {{ GStore }} -->
+    <CommentList :commentsHistory="GStore.event.commentList" />
   </div>
+  <!-- </div> -->
 </template>
-
 <script>
+//import CommentForm from '@/components/CommentForm.vue'
+import CommentList from "@/components/CommentList.vue";
+//import AuthService from '@/service/AuthService'
+//import GStore from '@/store'
+//import CommentService from '@/service/CommentService.js'
 export default {
-  props: ["id", "event"],
+  inject: ["GStore"],
+  components: {
+    //CommentForm
+    CommentList,
+  },
+  data() {
+    return {
+      newComment: null,
+    };
+  },
+  // methods: {
+  //   addComment(comment) {
+  //     console.log(comment)
+  //     GStore.comments.push(comment)
+  //     // GStore.patient.doctorRec = GStore.comments.filter(
+  //     //   (patient) => GStore.patient.id == patient.patient_id
+  //     // )
+  //     CommentService.addComment(GStore.patient.id, comment)
+  //   }
+  // },
+  // computed: {
+  //   isDoctor() {
+  //     return AuthService.hasRoles('ROLE_DOCTOR')
+  //   }
+  // }
 };
 </script>
-<style>
-.vaccine1 {
-  padding: 20px;
-  /* border: 1px solid #39495c; */
-  margin-bottom: 18px;
-}
-.vaccine2 {
-  padding: 20px;
-  /* border: 1px solid #39495c; */
-  margin-bottom: 18px;
-}
-.vaccine3 {
-  padding: 20px;
-  /* border: 1px solid #39495c; */
-  margin-bottom: 18px;
-}
-
-p {
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 35px;
-  width: 550px;
-}
-</style>

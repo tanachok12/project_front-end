@@ -11,7 +11,7 @@
 <script>
 import CommentForm from "@/components/CommentForm.vue";
 // import VaccineForm from '@/components/VaccineForm.vue'
-// import AuthService from "@/services/AuthService";
+import AuthService from "@/services/AuthService";
 // import VaccineService from '@/service/VaccineService.js'
 import GStore from "@/store";
 import CommentService from "@/services/CommentService.js";
@@ -30,23 +30,20 @@ export default {
   methods: {
     addComment(comment) {
       console.log(comment);
-      GStore.comments.push(comment);
+      GStore.comment.push(comment);
       // GStore.patient.doctorRec = GStore.comments.filter(
       //   (patient) => GStore.patient.id == patient.patient_id
       // )
       CommentService.addComment(GStore.event.id, comment);
     },
-    // addVaccine(vaccine) {
-    //   VaccineService.addVaccine(GStore.patient.id, vaccine)
-    // }
   },
-  // computed: {
-  //   isAdmin() {
-  //     return AuthService.hasRoles("ROLE_ADMIN");
-  //   },
-  //   isDoctor() {
-  //     return AuthService.hasRoles("ROLE_DOCTOR");
-  //   },
-  // },
+  computed: {
+    isAdmin() {
+      return AuthService.hasRoles("ROLE_ADMIN");
+    },
+    isDoctor() {
+      return AuthService.hasRoles("ROLE_DOCTOR");
+    },
+  },
 };
 </script>

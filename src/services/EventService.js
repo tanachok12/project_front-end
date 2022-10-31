@@ -25,11 +25,11 @@ export default {
       "event?_limit=" + perPage + "&_page=" + page + "&title=" + keyword
     );
   },
-  addComment(id, Comment) {
-    return apiClient.post("/comment/" + id, Comment);
-  },
   getComment(id) {
-    return apiClient.get("/comment/" + id);
+    return apiClient.get("event/" + id + "/comment");
+  },
+  getVaccine(id) {
+    return apiClient.get("event/" + id + "/vaccine");
   },
   uploadFile(file) {
     let formData = new FormData();

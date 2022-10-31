@@ -1,8 +1,9 @@
 import { reactive } from "vue";
 export default reactive({
   flashMessage: "",
-  comments: [],
+  comment: [],
   event: null,
   organizers: null,
+  vaccine: [],
   currentUser: JSON.parse(localStorage.getItem("user")),
 });

@@ -1,55 +1,41 @@
 <template>
   <form class="comment-form" @submit.prevent="onSubmit">
-    <label for="name">Doctor Name:</label>
-    <input id="name" v-model="name" />
+    <!-- <label for="vaccine">Vaccine:</label>
+    <input id="vaccine" v-model="vaccine" />
 
-    <!-- <label for="id">ID:</label>
-    <input id="id" v-model="id" /> -->
+    <label for="vaccine2">Vaccine2:</label>
+    <input id="vaccine2" v-model="vaccine2" /> -->
 
-    <label for="comment">Comment:</label>
-    <textarea id="comment" v-model="comment"></textarea>
+    <label for="vaccine3">Vaccine3:</label>
+    <textarea id="vaccine3" v-model="vaccine3"></textarea>
 
     <input class="button" type="submit" value="Submit" />
   </form>
 </template>
 <script>
-// import GStore from '@/store'
-import CommentService from "@/services/CommentService";
 export default {
   inject: ["GStore"],
   data() {
     return {
-      // patient_id: '',
-      // patient_name: '',
-      name: "",
-      comment: "",
-      // id: ''
+      vaccine3: "",
     };
   },
   methods: {
     onSubmit() {
-      if (this.name === "" || this.comment === "") {
-        alert("Comment incomplete. Please fill out every field.");
+      if (this.vaccine3 === "") {
+        alert("Vaccine incomplete. Please fill out every field.");
         return;
       }
-      this.GStore.flashMessage = "The comment is being added ";
+      this.GStore.flashMessage = "The vaccine is being added ";
       setTimeout(() => {
         this.GStore.flashMessage = "";
       }, 3500);
-      let doctorComment = {
-        // patient_id: GStore.event.id,
-        // patient_name: GStore.event.name,
-        name: this.name,
-        comment: this.comment,
-        // id: this.id
+      let vaccine = {
+        vaccine3: this.vaccine3,
       };
-      this.$emit("comment-submited", doctorComment);
-      CommentService.addComment(this.GStore.currentUser.id, doctorComment);
-      // this.patient_id = ''
-      // this.patient_name = ''
-      this.name = "";
-      this.comment = "";
-      // this.id = ''
+      this.$emit("comment-submited", vaccine);
+
+      this.vaccine3 = "";
     },
   },
 };

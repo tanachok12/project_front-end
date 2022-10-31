@@ -21,7 +21,7 @@
 
         <ul v-if="GStore.currentUser" class="navbar-nav ml-auto">
           <li class="nav-item">
-            <router-link :to="{ name: 'AddEvent' }" class="nav-link">
+            <router-link to="/" class="nav-link">
               <font-awesome-icon icon="user" />
               {{ GStore.currentUser.name }}
             </router-link>
@@ -41,7 +41,9 @@
           <router-link to="/">Home</router-link>|
           <!-- <router-link :to="{ name: 'ChangeRole' }"> ChangeRole </router-link>| -->
 
-          <router-link :to="{ name: 'AddEvent' }"> Add Patient</router-link>|
+          <router-link v-if="isAdmin" :to="{ name: 'AddEvent' }">
+            Add Patient</router-link
+          >|
           <!-- <router-link :to="{ name: 'ChangeRole' }"> ChangeRole </router-link>| -->
 
           <!-- <router-link to="/about">About</router-link>| -->
@@ -69,11 +71,14 @@ export default {
     isAdmin() {
       return AuthService.hasRoles("ROLE_ADMIN");
     },
+    isDoctor() {
+      return AuthService.hasRoles("ROLE_DOCTOR");
+    },
   },
   methods: {
     logout() {
       AuthService.logout();
-      this.$router.go();
+      this.$router.push({ name: "Login" });
     },
   },
 };

@@ -7,26 +7,37 @@
         >Patient Details</router-link
       >
 
-      <router-link class="list" :to="{ name: 'DoctorComment' }"
+      <router-link v-if="isDoctor" class="list" :to="{ name: 'DoctorComment' }"
         >Doctor Recommendation</router-link
       >
-
+      <router-link class="list" :to="{ name: 'EventEdit' }"
+        >CommentList
+      </router-link>
       <router-link class="list" :to="{ name: 'VaccineEdit' }"
         >Vaccine Certificate</router-link
       >
-      <router-link class="list" :to="{ name: 'addVaccine' }"
+      <router-link v-if="isAdmin" class="list" :to="{ name: 'addVaccine' }"
         >Add Vaccine
       </router-link>
-      <router-link class="list" :to="{ name: 'ChangeRole' }"
-        >Change Role
-      </router-link>
+      <!-- <router-link class="list" :to="{ name: 'EventEdit' }"
+        >CommentList
+      </router-link> -->
     </div>
     <router-view :event="GStore.event" />
   </div>
 </template>
 <script>
+import AuthService from "@/services/AuthService.js";
 export default {
   inject: ["GStore"],
+  computed: {
+    isAdmin() {
+      return AuthService.hasRoles("ROLE_ADMIN");
+    },
+    isDoctor() {
+      return AuthService.hasRoles("ROLE_DOCTOR");
+    },
+  },
 };
 </script>
 <style>
@@ -45,7 +56,7 @@ export default {
   padding: 1rem;
   background-color: none;
   width: 100%;
-  margin-left: 300px;
+  margin-left: 400px;
 }
 .nav a {
   text-decoration: none;

@@ -4,13 +4,32 @@
     Age: {{ event.age }} <br />
     Address: {{ event.location }}
   </p>
-  <span v-for="comment in event.comment" :key="comment">
-    {{ comment }}
-  </span>
+  <!-- <h1>{{ GStore.event }}</h1> -->
+  <!-- <span v-for="comment in event.comment" :key="comment">
+    {{ comment }} -->
+  <!-- </span> -->
   <div class="imggg">
     <img class="add-img" :src="event.addimg" alt="" />
 
     <img class="add-img" :src="event.imageUrls" alt="" />
+  </div>
+  <div class="stats">
+    <!-- <router-link
+            class="event-link"
+            :to="{ name: 'ChangeRoleToDoctor', params: { id: GStore.user.id } }"
+          > -->
+    <button class="btn hvr-underline-from-center" @click="change">
+      Set to doctor
+    </button>
+    <!-- </router-link>
+          <router-link
+            class="event-link"
+            :to="{ name: 'ChangeRoleToPeople', params: { id: GStore.user.id } }"
+          > -->
+    <button class="btn hvr-underline-from-center" @click="change">
+      Set to people
+    </button>
+    <!-- </router-link> -->
   </div>
 </template>
 
