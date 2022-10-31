@@ -1,24 +1,18 @@
-# lab03
+# Project Final
 
-## Project setup
+## Project Group Name
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+PIPO
 ```
 
-### Compiles and minifies for production
+### Group member
 ```
-npm run build
+632115012 Jedsada Kampen
+```
+632115020 Tanachok Doungsatan
+```
+632115037 Wathanyu Suliamma
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Web URL
+See [My Web](https://cli.vuejs.org/config/).
