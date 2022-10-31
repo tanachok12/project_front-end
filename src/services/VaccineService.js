@@ -11,14 +11,11 @@ import apiClient from "@/services/AxiosClient.js";
 // })
 
 export default {
-  getEvents(perPage, page) {
-    return apiClient.get("/event?_limit=" + perPage + "&_page=" + page);
+  getVaccine(id) {
+    return apiClient.get("/vaccine/" + id);
   },
-  getEvent(id) {
-    return apiClient.get("/event/" + id);
-  },
-  saveEvent(event) {
-    return apiClient.post("/event", event);
+  saveVaccine(vaccine) {
+    return apiClient.post("/vaccine", vaccine);
   },
   getEventByKeyword(keyword, perPage, page) {
     return apiClient.get(
@@ -27,9 +24,6 @@ export default {
   },
   addComment(id, Comment) {
     return apiClient.post("/comment/" + id, Comment);
-  },
-  getComment(id) {
-    return apiClient.get("/comment/" + id);
   },
   uploadFile(file) {
     let formData = new FormData();

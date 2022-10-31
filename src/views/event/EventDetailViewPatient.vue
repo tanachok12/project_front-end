@@ -4,8 +4,13 @@
     Age: {{ event.age }} <br />
     Address: {{ event.location }}
   </p>
+  <span v-for="comment in event.comment" :key="comment">
+    {{ comment }}
+  </span>
   <div class="imggg">
     <img class="add-img" :src="event.addimg" alt="" />
+
+    <img class="add-img" :src="event.imageUrls" alt="" />
   </div>
 </template>
 

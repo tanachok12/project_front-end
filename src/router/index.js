@@ -17,6 +17,9 @@ import Register from "@/views/RegisterFormView.vue";
 import EventDetailViewPatient from "@/views/event/EventDetailViewPatient.vue";
 import DoctorComment from "@/views/event/DoctorComment.vue";
 import Vaccine from "@/views/event/VaccineEditView.vue";
+import addVaccine from "@/views/event/AddVaccineView.vue";
+import ChangeRole from "@/views/event/ChangeRoleView.vue";
+import UserView from "@/views/event/UserView.vue";
 const routes = [
   {
     path: "/",
@@ -28,6 +31,18 @@ const routes = [
     path: "/about",
     name: "about",
     component: AboutView,
+  },
+  {
+    path: "/ChangeRole",
+    name: "ChangeRole",
+    props: true,
+    component: ChangeRole,
+  },
+  {
+    path: "/UserView",
+    name: "UserView",
+    props: true,
+    component: UserView,
   },
   {
     path: "/event/:id",
@@ -86,6 +101,24 @@ const routes = [
         name: "VaccineEdit",
         props: true,
         component: Vaccine,
+      },
+      {
+        path: "addVaccine",
+        name: "addVaccine",
+        props: true,
+        component: addVaccine,
+      },
+      {
+        path: "ChangeRole",
+        name: "ChangeRole",
+        props: true,
+        component: ChangeRole,
+      },
+      {
+        path: "/UserView",
+        name: "UserView",
+        props: true,
+        component: UserView,
       },
     ],
   },

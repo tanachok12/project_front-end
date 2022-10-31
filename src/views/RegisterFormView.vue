@@ -9,6 +9,16 @@
       <Form @submit="handleRegiter" :validation-schema="schema">
         <div v-if="!successful">
           <div class="form-group">
+            <label for="firstname">First Name </label>
+            <Field name="firstname" type="firstname" class="form-control" />
+            <ErrorMessage name="firstname" class="error-feedback" />
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <Field name="lastname" type="lastname" class="form-control" />
+            <ErrorMessage name="lastname" class="error-feedback" />
+          </div>
+          <div class="form-group">
             <label for="username">Username</label>
             <Field name="username" type="text" class="form-control" />
             <ErrorMessage name="username" class="error-feedback" />
@@ -23,6 +33,7 @@
             <Field name="password" type="password" class="form-control" />
             <ErrorMessage name="password" class="error-feedback" />
           </div>
+          <UploadImages @changed="handleImages" />
           <div class="form-group">
             <button class="btn btn-primary btn-block" :disabled="loading">
               <span
@@ -45,6 +56,8 @@
   </div>
 </template>
 <script>
+import UploadImages from "vue-upload-drop-images";
+
 import AuthService from "@/services/AuthService.js";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
@@ -54,11 +67,22 @@ export default {
     Form,
     Field,
     ErrorMessage,
+    UploadImages,
   },
   //eslint-disable-next-line
-    inject:['GStore'],
+  inject: ["GStore"],
   data() {
     const schema = yup.object().shape({
+      firstname: yup
+        .string()
+        .required("First name is required!")
+        .min(3, "Must be at least 3 charaacter!")
+        .max(20, "Must be maximum 20 characters!"),
+      lastname: yup
+        .string()
+        .required("Last name is required!")
+        .min(3, "Must be at least 3 charaacter!")
+        .max(20, "Must be maximum 20 characters!"),
       username: yup
         .string()
         .required("Username is required!")
@@ -80,6 +104,7 @@ export default {
       loading: false,
       message: "",
       schema,
+      files: [],
     };
   },
   mounted() {
@@ -89,7 +114,7 @@ export default {
   },
   methods: {
     // eslint-disable-next-line
-    handleRegiter(user){
+    handleRegiter(user) {
       AuthService.register(user)
         .then(() => {
           this.$router.push({ path: "/" });

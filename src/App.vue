@@ -3,7 +3,6 @@
     <div id="flashMessage" v-if="GStore.flashMessage">
       {{ GStore.flashMessage }}
     </div>
-
     <div id="nav">
       <nav class="navbar navbar-expand">
         <ul v-if="!GStore.currentUser" class="navbar-nav ml-auto">
@@ -22,7 +21,7 @@
 
         <ul v-if="GStore.currentUser" class="navbar-nav ml-auto">
           <li class="nav-item">
-            <router-link to="/profile" class="nav-link">
+            <router-link :to="{ name: 'AddEvent' }" class="nav-link">
               <font-awesome-icon icon="user" />
               {{ GStore.currentUser.name }}
             </router-link>
@@ -39,7 +38,12 @@
             src="https://cdn.discordapp.com/attachments/861928412348022785/1035174410350501888/unknown.png"
             alt=""
           />
-          <router-link to="/">Home</router-link>
+          <router-link to="/">Home</router-link>|
+          <!-- <router-link :to="{ name: 'ChangeRole' }"> ChangeRole </router-link>| -->
+
+          <router-link :to="{ name: 'AddEvent' }"> Add Patient</router-link>|
+          <!-- <router-link :to="{ name: 'ChangeRole' }"> ChangeRole </router-link>| -->
+
           <!-- <router-link to="/about">About</router-link>| -->
           <!-- <router-link to="/aboutt">Vaccine injection</router-link> |
     <router-link to="/">Doctor Recommendation</router-link> | -->
@@ -49,7 +53,7 @@
 
     <!-- <router-link :to="{ name: 'about' }">About</router-link> | -->
     <!-- <span v-if="isAdmin">
-        <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
+        <router-link :to="{ name: 'AddEvent' }"> New Event</router-link> 
       </span> -->
     <router-view />
   </div>

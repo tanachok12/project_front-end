@@ -14,6 +14,12 @@
       <router-link class="list" :to="{ name: 'VaccineEdit' }"
         >Vaccine Certificate</router-link
       >
+      <router-link class="list" :to="{ name: 'addVaccine' }"
+        >Add Vaccine
+      </router-link>
+      <router-link class="list" :to="{ name: 'ChangeRole' }"
+        >Change Role
+      </router-link>
     </div>
     <router-view :event="GStore.event" />
   </div>
@@ -39,7 +45,7 @@ export default {
   padding: 1rem;
   background-color: none;
   width: 100%;
-  margin-left: 500px;
+  margin-left: 300px;
 }
 .nav a {
   text-decoration: none;
