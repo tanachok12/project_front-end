@@ -2,7 +2,7 @@ name: deploy on prod
 'on' :
   push:
     branches:
-      - prod
+      - prod1
 
 jobs:
   docker:
