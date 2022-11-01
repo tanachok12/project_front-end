@@ -3,30 +3,15 @@
     <h1>Create an patients</h1>
     <h1></h1>
     <form @submit.prevent="saveEvent">
-      <!-- <h3>Vaccine</h3>
-      <BaseInput
-        v-model="event.vaccine1"
-        type="text"
-        label="Vaccine1"
-        class="field"
-      />
-      <BaseInput
-        v-model="event.vaccine2"
-        type="text"
-        label="Vaccine2"
-        class="field"
-      /> -->
-         <h3>Name & describe patients</h3>
+      <h3>Name & describe patients</h3>
 
       <BaseInput v-model="event.name" type="text" label="Name" />
       <BaseInput v-model="event.age" type="text" label="Age" />
       <h3>The image of the Patient</h3>
       <UploadImages @changed="handleImages" />
       <h3>Name & describe patients</h3>
-<!-- 
-      <BaseInput v-model="event.name" type="text" label="Name" />
-      <BaseInput v-model="event.age" type="text" label="Age" /> -->
-       <h3>Vaccine</h3>
+
+      <h3>Vaccine</h3>
       <BaseInput
         v-model="event.vaccine1"
         type="text"
@@ -39,7 +24,6 @@
         label="Vaccine2"
         class="field"
       />
-      <!-- <BaseInput v-model="event.description" type="text" label="Description" /> -->
 
       <h3>Location of patients</h3>
 
