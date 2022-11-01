@@ -22,7 +22,7 @@
         label="Vaccine3"
         class="field"
       />
-      <h3>The image of the Event</h3>
+      <h3>The image of the Patient</h3>
       <UploadImages @changed="handleImages" />
       <h3>Name & describe patients</h3>
 
@@ -112,7 +112,7 @@ export default {
   padding: 40px 40px;
 }
 .card {
-  background-color: #a7d8af;
+  background-color: #e5f1e7;
   padding: 50px 60px 50px;
   margin: 0 auto 25px;
   margin-top: 50px;
