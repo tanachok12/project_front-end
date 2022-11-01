@@ -49,13 +49,12 @@ export default {
   data() {
     return {
       event: {
+        name: "",
+        age: "",
+        imageUrls: [],
         vaccine1: "",
         vaccine2: "",
-        imageUrls: [],
-        name: "",
-        description: "",
         location: "",
-        organizer: { id: "", name: "" },
       },
       files: [],
     };
