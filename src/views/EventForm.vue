@@ -31,14 +31,6 @@
 
       <BaseInput v-model="event.location" type="text" label="Location" />
 
-      <h3>Docter</h3>
-
-      <BaseSelect
-        :options="GStore.organizers"
-        v-model="event.organizer.id"
-        label="Select an Docter"
-      />
-
       <button type="submit">Submit</button>
     </form>
 
@@ -57,7 +49,6 @@ export default {
   data() {
     return {
       event: {
-        vaccine: "",
         vaccine1: "",
         vaccine2: "",
         imageUrls: [],
